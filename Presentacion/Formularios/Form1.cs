@@ -39,9 +39,6 @@ namespace Presentacion.Formularios
 
         }
 
-        private void dataUsuarioBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

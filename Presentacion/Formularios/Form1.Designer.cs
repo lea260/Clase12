@@ -71,8 +71,7 @@
             // 
             // dataUsuarioBindingSource
             // 
-            this.dataUsuarioBindingSource.DataSource = typeof(Negocio.Objetos.DataUsuario);
-            this.dataUsuarioBindingSource.CurrentChanged += new System.EventHandler(this.dataUsuarioBindingSource_CurrentChanged);
+            
             // 
             // btnListar
             // 
