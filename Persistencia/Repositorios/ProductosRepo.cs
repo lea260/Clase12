@@ -3,6 +3,7 @@ using Persistencia.Contratos;
 using Persistencia.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace Persistencia.Repositorios
@@ -148,6 +149,76 @@ namespace Persistencia.Repositorios
                 }
             }
         }
+
+        public void CSVToMySQL(List<ProductoEntidad> list)
+        {
+            MySqlConnection conexion = null;            
+            MySqlTransaction trans = null;            
+            try
+            {
+                conexion = ConexionDB.GetConexion();
+                conexion.Open();
+                string sql = "insert into productos (codigo, descripcion,precio,fecha) values " +
+                        "(@codigo, @descripcion, @precio, @fecha)";
+                MySqlCommand comando = new MySqlCommand(sql, conexion);
+                trans = conexion.BeginTransaction();                
+                foreach (var entidad in list)
+                {
+                    comando.Parameters.Clear();
+                    comando.Parameters.AddWithValue("@codigo", entidad.Codigo);
+                    comando.Parameters.AddWithValue("@descripcion", entidad.Descripcion);
+                    comando.Parameters.AddWithValue("@precio", entidad.Precio);
+                    comando.Parameters.AddWithValue("@fecha", entidad.Fecha);
+                    comando.ExecuteNonQuery();
+                }
+                trans.Commit();
+            }
+            catch (MySqlException ex)
+            {
+                string mensaje = ex.ToString();
+                Console.WriteLine("hola" + mensaje);
+                trans.Rollback();
+            }
+            finally
+            {
+                if (conexion != null)
+                {
+                    conexion.Close();
+                    conexion.Dispose();
+                }
+                if (trans != null)
+                {
+                    trans.Dispose();
+                }
+            }
+        }//end CSVToMySQL
+
+        /*
+        string Command = "INSERT INTO User (FirstName, LastName ) VALUES (@FirstName, @LastName);";
+        using (MySqlConnection mConnection = new MySqlConnection(ConnectionString))
+        {
+            mConnection.Open();
+            using (MySqlTransaction trans = mConnection.BeginTransaction())
+            {
+                using (MySqlCommand myCmd = new MySqlCommand(Command, mConnection, trans))
+                {
+
+
+                    myCmd.CommandType = CommandType.Text;
+                    for (int i = 0; i <= 99999; i++)
+                    {
+                        //inserting 100k items
+                        myCmd.Parameters.Clear();
+                        myCmd.Parameters.AddWithValue("@FirstName", "test");
+                        myCmd.Parameters.AddWithValue("@LastName", "test");
+                        myCmd.ExecuteNonQuery();
+                    }
+                    trans.Commit();
+                }
+            }
+        }
+    }*/
+
         public void EliminarProducto(long idproductos)
         {
             MySqlConnection conexion = null;

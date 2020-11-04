@@ -11,6 +11,7 @@ using Negocio.Servicios;
 using Negocio.Objetos;
 using System.Security.Cryptography;
 using Presentacion.Helpers;
+using Negocio.Modelo;
 
 
 
@@ -77,6 +78,32 @@ namespace Presentacion.Formularios
         {
             Form form = new AgregarProducto(Modo.Agregar);
             form.Show();
+        }
+
+        private void btnImportar_Click(object sender, EventArgs e)
+        {
+            List<DataProducto> list = new List<DataProducto>();
+            DataProducto producto01 = new DataProducto();
+            producto01.Codigo = "codigo001";
+            producto01.Descripcion = "desc001";
+            producto01.Precio = 12;
+            producto01.Fecha = new DateTime(2019, 12, 10);
+            DataProducto producto02 = new DataProducto();
+            producto02.Codigo = "codigo002";
+            producto02.Descripcion = "desc002";
+            producto02.Precio = 12;
+            producto02.Fecha = new DateTime(2019, 12, 10);
+            DataProducto producto03 = new DataProducto();
+            producto03.Codigo = "codigo003";
+            producto03.Descripcion = "desc002";
+            producto03.Precio = 12;
+            producto03.Fecha = new DateTime(2019, 12, 10);
+            list.Add(producto01);
+            list.Add(producto02);
+            list.Add(producto03);
+            Producto modelo = new Producto();
+            modelo.AgregarCscProductos(list);
+
         }
 
         /*private void btnAgregar_Click(object sender, EventArgs e)

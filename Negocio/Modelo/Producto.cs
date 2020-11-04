@@ -47,5 +47,22 @@ namespace Negocio.Modelo
             ProductosRepo repProdu = new ProductosRepo();
             repProdu.EliminarProducto(idproducto);
         }
+
+        public void AgregarCscProductos(List<DataProducto> list)
+        {
+            ProductosRepo repo = new ProductosRepo();
+            List<ProductoEntidad> listEntidades = new List<ProductoEntidad>();
+            foreach (var item in list)
+            {
+                ProductoEntidad entidad = new ProductoEntidad();
+                entidad.Id_productos = item.Id_productos;
+                entidad.Codigo = item.Codigo;
+                entidad.Descripcion = item.Descripcion;
+                entidad.Precio = item.Precio;
+                entidad.Fecha = item.Fecha;
+                listEntidades.Add(entidad);
+            }
+            repo.CSVToMySQL(listEntidades);
+        }
     }
 }

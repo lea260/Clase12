@@ -30,6 +30,7 @@
         {
             this.lblbienvenido = new System.Windows.Forms.Label();
             this.lblusuario = new System.Windows.Forms.Label();
+            this.btnAgregarPoductos = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblbienvenido
@@ -51,11 +52,21 @@
             this.lblusuario.Text = "label2";
             this.lblusuario.Click += new System.EventHandler(this.lblusuario_Click);
             // 
+            // btnAgregarPoductos
+            // 
+            this.btnAgregarPoductos.Location = new System.Drawing.Point(493, 54);
+            this.btnAgregarPoductos.Name = "btnAgregarPoductos";
+            this.btnAgregarPoductos.Size = new System.Drawing.Size(195, 23);
+            this.btnAgregarPoductos.TabIndex = 2;
+            this.btnAgregarPoductos.Text = "Agregar Poductos";
+            this.btnAgregarPoductos.UseVisualStyleBackColor = true;
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnAgregarPoductos);
             this.Controls.Add(this.lblusuario);
             this.Controls.Add(this.lblbienvenido);
             this.Name = "Principal";
@@ -70,5 +81,6 @@
 
         private System.Windows.Forms.Label lblbienvenido;
         private System.Windows.Forms.Label lblusuario;
+        private System.Windows.Forms.Button btnAgregarPoductos;
     }
 }
