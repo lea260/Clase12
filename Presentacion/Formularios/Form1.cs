@@ -22,6 +22,10 @@ namespace Presentacion.Formularios
         public Form1()
         {
             InitializeComponent();
+            //this.TextBox1.Size = new System.Drawing.Size(173, 100);
+            
+
+
         }
 
         private void btnListar_Click(object sender, EventArgs e)
@@ -38,7 +42,16 @@ namespace Presentacion.Formularios
             }*/
 
         }
+        OpenFileDialog ofd = new OpenFileDialog();
+        private void btnFile_Click(object sender, EventArgs e)
+        {
+            //ofd.ShowDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                txtName.Text = ofd.FileName;
+                txtFullName.Text = ofd.SafeFileName;
 
-       
+            }
+        }
     }
 }
