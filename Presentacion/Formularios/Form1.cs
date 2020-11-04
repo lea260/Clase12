@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,7 +51,14 @@ namespace Presentacion.Formularios
             {
                 txtName.Text = ofd.FileName;
                 txtFullName.Text = ofd.SafeFileName;
-
+                var lines = File.ReadAllLines(ofd.FileName);
+                foreach (string line in lines)
+                {
+                    var values = line.Split(';');
+                    string uno = values[0];
+                    string dos = values[1];
+                    string tres = values[0];
+                }
             }
         }
     }
